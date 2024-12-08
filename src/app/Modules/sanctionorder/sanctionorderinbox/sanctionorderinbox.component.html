@@ -1,0 +1,16 @@
+<app-card2 (back)="goBack()">
+    <div header1 class="p-3">
+      <h4 class="mb-0">Sanction Order Inbox</h4>
+    </div>
+  
+    <div content1 class="p-4">
+ 
+
+<app-table
+  [data]="sanctionorderinbox"
+  [headers]="['View', 'Financial Year', 'Scheme Name', 'Component Name', 'Amount', 'Sanction Order No', 'Approval Status']"
+ ></app-table>
+
+    </div>
+
+    </app-card2>

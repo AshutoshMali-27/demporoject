@@ -1,0 +1,89 @@
+<app-card2 (back)="goBack()">
+  <div header1 >
+    <h6 >Sanction Order Entry</h6>
+  </div>
+
+  <div content1 class="p-4">
+    <!-- Invoice Container -->
+    <div class="container">
+
+      <!-- Invoice Header -->
+      <div class="row mb-4">
+
+        <div class="col-md-8 text-start">
+          <h4>Company Name</h4>
+          <p>Company Address Line 1</p>
+          <p>Company Address Line 2</p>
+          <p>Phone: (123) 456-7890</p>
+          <p>Email: info.com</p>
+        </div>
+
+        <div class="col-md-4 text-end">
+          <h2 class="invoice-title">Invoice #{{invoiceNumber}}</h2>
+          <p class="invoice-date">Date: {{invoiceDate}}</p>
+        </div>
+       
+      </div>
+
+      <!-- Customer Details -->
+    
+
+      <!-- Invoice Items -->
+      <div class="invoice-items mb-4">
+        <table class="table table-bordered table-striped">
+          <thead class="table-light">
+            <tr>
+              <th>Description</th>
+              <th>Quantity</th>
+              <th>Unit Price</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of invoiceItems">
+              <td>{{ item.description }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.unitPrice | currency }}</td>
+              <td>{{ item.total | currency }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Invoice Summary -->
+      <div class="invoice-summary mb-4">
+        <div class="row">
+          <div class="col-md-6">
+            <p class="summary-label">Subtotal:</p>
+            <p class="summary-value">{{ subtotal | currency }}</p>
+          </div>
+          <div class="col-md-6">
+            <p class="summary-label">Tax ({{taxRate}}%):</p>
+            <p class="summary-value">{{ taxAmount | currency }}</p>
+          </div>
+          <div class="col-md-6 offset-md-6 text-end">
+            <p class="summary-label">Total:</p>
+            <p class="summary-value total-amount">{{ totalAmount | currency }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Info -->
+      <div class="payment-info mb-4">
+        <div class="row">
+          <div class="col-md-6">
+            <p>Payment Due Date: {{dueDate}}</p>
+            <p>Payment Method: {{paymentMethod}}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notes -->
+      <div class="notes mt-4">
+        <h5>Notes:</h5>
+        <p>{{notes}}</p>
+      </div>
+
+    </div>
+  </div>
+</app-card2>

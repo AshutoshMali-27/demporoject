@@ -1,0 +1,36 @@
+/*  */
+
+/* Style the title of the invoice */
+.invoice-title {
+    color: #333;
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+  
+  /* Add a background color to the Invoice summary section */
+  .invoice-summary {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  /* Highlight total amount with a custom color */
+  .total-amount {
+    color: #28a745;
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
+  
+  /* Make the "Bill To" and "Ship To" sections more prominent */
+  .customer-info {
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+  
+  .summary-label {
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  

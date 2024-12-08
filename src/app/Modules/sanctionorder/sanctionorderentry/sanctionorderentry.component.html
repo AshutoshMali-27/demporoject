@@ -1,0 +1,202 @@
+<app-card2 (back)="goBack()">
+  <div header1>
+    <h6>Sanction Order Entry</h6>
+  </div>
+
+  <div content1>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+     
+       
+
+
+          <div class="grid gap-6 mb-6 md:grid-cols-1">
+            </div>
+
+
+
+
+          <div class="grid gap-6 mb-6 md:grid-cols-4">
+            <div>
+              <app-controlcontainers
+                name="FinancialYearId"
+                label="Financial Year"
+                errorMsg="financial Year is required"
+                [isLabelOnSameLine]="false"
+                tooltipText="Enter your username"
+              >
+                <app-dropdown
+                  [items]="financialYears"
+                  formControlName="FinancialYearId"
+                  placeholder="Choose a Financial Year"
+                  (valueChange)="onDropdownChange($event)"
+                >
+                </app-dropdown>
+              </app-controlcontainers>
+            </div>
+
+            <div>
+              <app-controlcontainers
+                name="schemeid"
+                label="Scheme Name"
+                errorMsg="Scheme Name is required"
+                [isLabelOnSameLine]="false"
+                tooltipText="Enter your username"
+              >
+                <app-dropdown
+                  [items]="schemename"
+                  formControlName="schemeid"
+                  placeholder="Choose a Scheme Name"
+                  (valueChange)="ddlSchemeChange($event)"
+                >
+                </app-dropdown>
+              </app-controlcontainers>
+            </div>
+
+            <div>
+              <app-controlcontainers
+                name="componentid"
+                label="Component Name"
+                errorMsg="Component Name is required"
+                [isLabelOnSameLine]="false"
+                tooltipText="Enter your username"
+              >
+                <app-dropdown
+                  [items]="componentName"
+                  formControlName="componentid"
+                  placeholder="Choose a component  Name"
+                  (valueChange)="ddlComponentChange($event)"
+                >
+                </app-dropdown>
+              </app-controlcontainers>
+            </div>
+
+            <div>
+              <app-controlcontainers
+                name="amount"
+                label="Amount "
+                errorMsg="amount  required"
+                [isLabelOnSameLine]="false"
+                tooltipText="Enter your username"
+              >
+                <input
+                  formControlName="amount"
+                  type="text"
+                  placeholder="amount in Rupee"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pink-500 dark:focus:border-pink-500"
+                />
+                <div
+                  *ngIf="
+                    form.get('amount').invalid &&
+                    (form.get('amount').dirty || form.get('amount').touched)
+                  "
+                >
+                  <small
+                    class="text-danger"
+                    *ngIf="form.get('amount').hasError('pattern')"
+                  >
+                    Please enter a valid amount (up to two decimal places).
+                  </small>
+                </div>
+              </app-controlcontainers>
+            </div>
+          </div>
+
+          @if(tablegroup!= false){
+            <div class="grid gap-6 mb-6 md:grid-cols-2">
+              <div class="overflow-x-auto">
+                <table class="min-w-full  border border-gray-300">
+                  <thead>
+                    <tr class="bg-gray-100 text-left">
+                      <th class="px-4 py-2 border  bg-gradient-to-r from-[#FF3399] to-[#FF3399] text-white  border-gray-300">Sanction Amount</th>
+                      <th class="px-4 py-2 border  bg-gradient-to-r from-[#FF3399] to-[#FF3399] text-white  border-gray-300">Expenditure Amount</th>
+                      <th class="px-4 py-2 border  bg-gradient-to-r from-[#FF3399] to-[#FF3399]  text-white  border-gray-300">Balance Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="px-4 py-2 border border-gray-300">
+                        <input
+                          type="text"
+                          formControlName="sanctionAmount"
+                          class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-pink-500 dark:focus:border-pink-500"
+                          [readOnly]="true"
+                        />
+                      </td>
+                      <td class="px-4 py-2 border border-gray-300">
+                        <input
+                          type="text"
+                          formControlName="expenditureAmount"
+                          class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-pink-500 dark:focus:border-pink-500"
+                          [readOnly]="true"
+                        />
+                      </td>
+                      <td class="px-4 py-2 border border-gray-300">
+                        <input
+                          type="text"
+                          formControlName="balanceAmount"
+                          class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-pink-500 dark:focus:border-pink-500"
+                          [readOnly]="true"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+         
+          }
+
+          <div class="grid gap-6 mb-1 md:grid-cols-4">
+          
+              <div >
+                <app-controlcontainers
+                  name="sanctionnumber"
+                  label="Sanction No."
+                  errorMsg="sanction number is required"
+                  [isLabelOnSameLine]="false"
+                  tooltipText="Enter your username"
+                >
+                  <input
+                    formControlName="sanctionnumber"
+                    type="text"
+                    placeholder="AB-134"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pink-500 dark:focus:border-pink-500"
+                  />
+                </app-controlcontainers>
+              </div>
+
+              <div >
+                <app-controlcontainers
+                  name="sanctionfileupload"
+                  label="Sanction File upload"
+                  errorMsg="sanction File is required"
+                  [isLabelOnSameLine]="false"
+                  tooltipText="Enter your username"
+                >
+                  <div class="file-upload-container">
+                    <div class="custom-file">
+                      <input
+                        type="file"class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"id="customFile"
+                        (change)="onFileSelect($event)"
+                        formControlName="sanctionfileupload"
+                        accept=".jpg,.png,.pdf,.docx"
+                      />
+                      <!-- <label class="custom-file-label" for="customFile">
+                        {{ selectedFileName || "Choose file..." }}
+                      </label> -->
+                    </div>
+                  </div>
+                </app-controlcontainers>
+              </div>
+            </div>
+          
+
+          <div class="grid gap-6 mb-3 md:grid-cols-4 text-left">           
+              <app-savebtn class="mt-0" [isLoading]="isLoading" [buttonText]="'Submit'" [loadingText]="'Submitting...'"></app-savebtn>
+          </div>
+      
+      
+    </form>
+  </div>
+</app-card2>

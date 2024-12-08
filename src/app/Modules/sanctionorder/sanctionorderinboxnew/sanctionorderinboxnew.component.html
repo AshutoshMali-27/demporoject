@@ -1,0 +1,118 @@
+<app-card2 (back)="goBack()">
+    <div header1 >
+      <h6 >Sanction Order Inbox</h6>
+    </div>
+  
+    <div content1 class="p-4">
+      <!-- Rows per page selection -->
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <!-- Left-aligned Rows per page -->
+        <div class="d-flex align-items-center">
+          <label class="me-3 fw-bold">Rows per page:</label>
+          <div class="input-group w-auto">
+            <select class="custom-dropdown bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pink-500 dark:focus:border-pink-500" [(ngModel)]="rowsPerPage" (change)="updatePagination()">
+              <option *ngFor="let option of rowsPerPageOptions" [value]="option">{{ option }}</option>
+            </select>
+          </div>
+        </div>
+      
+        <!-- Right-aligned Global Search -->
+        <div class="d-flex justify-content-end">
+            <label class="me-3 fw-bold">Search:</label>
+          <input 
+            type="text" 
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pink-500 dark:focus:border-pink-500" 
+            [(ngModel)]="searchTerm" 
+            (input)="updatePagination()" 
+            placeholder="Search..." 
+          />
+        </div>
+      </div>
+
+      <!-- Table wrapped in a responsive container -->
+      <div *ngIf="filteredData.length > 0" class="table-responsive">
+        <table class="table table-striped table-bordered">
+          <thead class="table-light">
+            <tr>
+              <th>View</th>
+              <th>Financial Year</th>
+              <th>Scheme Name</th>
+              <th>Component Name</th>
+              <th class="text-end">Amount</th>
+              <th>Sanction Order No</th>
+              <th>Approval Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of paginatedData">
+              <td><button class="btn btn-primary" (click)="viewItem(item.id, item.approvalMasterID, item.masterID)">View slip</button></td>
+              <td>{{ item.financialYear }}</td>
+              <td>{{ item.schemename }}</td>
+              <td>{{ item.componentName }}</td>
+              <td class="text-end">{{ item.amount | currency }}</td>
+              <td>{{ item.sanctionnumber }}</td>
+              <td [ngClass]="{
+                'text-success': item.approvalStatus == 1,
+                'text-info': item.approvalStatus == 0,
+                'text-danger': item.approvalStatus == -1
+              }">
+                {{ item.approvalStatus == 0 ? 'Pending' : (item.approvalStatus == 1 ? 'Approved' : (item.approvalStatus == -1 ? 'Rejected' : 'Unknown')) }}
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4" class="text-lg-end">Page Total</td>
+              <td class="text-end">{{ pageTotal | currency }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td colspan="4" class="text-lg-end">Grand Total</td>
+              <td class="text-end">{{ totalAmount | currency }}</td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+  
+      <!-- Pagination with right-aligned navigation -->
+      <div *ngIf="filteredData.length > 0" class="flex justify-end mt-3">
+        <nav>
+          <ul class="flex space-x-2">
+            <!-- Previous button -->
+            <li>
+              <button 
+                class="px-4 py-2 border rounded-lg bg-gray-200 text-gray-600 hover:bg-gray-300 disabled:bg-gray-100 disabled:text-gray-400" 
+                (click)="changePage(currentPage - 1)" 
+                [disabled]="currentPage === 1">
+                Previous
+              </button>
+            </li>
+      
+            <!-- Page numbers -->
+            <li *ngFor="let page of pages">
+              <button 
+                class="px-4 py-2 border rounded-lg bg-white text-gray-600 hover:bg-gray-300"
+                [class.bg-blue-500]="page === currentPage" 
+                [class.text-white]="page === currentPage"
+                (click)="changePage(page)">
+                {{ page }}
+              </button>
+            </li>
+      
+            <!-- Next button -->
+            <li>
+              <button 
+                class="px-4 py-2 border rounded-lg bg-gray-200 text-gray-600 hover:bg-gray-300 disabled:bg-gray-100 disabled:text-gray-400" 
+                (click)="changePage(currentPage + 1)" 
+                [disabled]="currentPage === totalPages">
+                Next
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      
+    </div>
+  </app-card2>
+  

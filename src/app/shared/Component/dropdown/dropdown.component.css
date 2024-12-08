@@ -1,0 +1,11 @@
+.custom-dropdown {
+    appearance: none; /* Remove default styling */
+    -webkit-appearance: none; /* For WebKit browsers */
+    -moz-appearance: none; /* For Firefox */
+ 
+}
+
+.custom-dropdown option {
+/* Background color of options */
+    color: black; /* Text color */
+  }

@@ -1,0 +1,71 @@
+<!-- 
+
+ <div class="d-flex" style="width: 100%;">
+    @if (isLoggedIn) {
+        <div id="sidebar" style=" width: 12%; height: 100vh;" >
+            <app-sidebar></app-sidebar> 
+        </div>
+    }
+ 
+        <div id="navbar" style="  height: 10vh;" [style.width]="isLoggedIn ? '88%' : '100%'" >
+            @if (isLoggedIn) {
+            <app-navbar></app-navbar>
+            }
+            <div  [style.padding]="isLoggedIn?'25px':'0px'">
+                <router-outlet></router-outlet>
+            </div>
+        
+        </div>
+    
+</div> -->
+
+
+
+<div class="container-fluid g-0">
+    <ng-container *ngIf="isLoggedIn; else loggedOut">
+      <app-navbar (sidenavtoggled)="sidenavStatus = $event"></app-navbar>
+      <main>
+        <app-sidebar [sidenavStatus]="sidenavStatus" [ngClass]="{'app-side-nav-open': sidenavStatus}"></app-sidebar>
+        <div class="display-area p-3" [ngClass]="isLoggedIn ? { 'display-area-shrink': sidenavStatus } : ''">
+          <div [style.padding]="isLoggedIn ? '5px' : '0px'" >
+            <!-- style="background-color: #fff4fc;" -->
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </main>
+    </ng-container>
+    
+    <ng-template #loggedOut>
+      <!-- Content to show when not logged in -->
+      <div class="">
+        <div [style.padding]="'0px'">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  
+  
+
+<!-- 
+<div class="container-fluid g-0">
+    <div>
+        @if (isLoggedIn) {
+            <app-navbar (sidenavtoggled)="sidenavStatus= $event;"></app-navbar>
+            }
+            <div  [style.padding]="isLoggedIn?'25px':'0px'">
+                <router-outlet></router-outlet>
+            </div>
+    </div>
+   
+  
+    <main>
+        @if (isLoggedIn) {
+      <app-sidebar [sidenavStatus]="sidenavStatus" [ngClass]="{'app-side-nav-open':sidenavStatus}"></app-sidebar>
+      <div class="display-area p-3" [ngClass]="{'display-area-shrink':sidenavStatus}">
+        <p class="fs-1 fs-bold fst-italic">Main Display Area</p>
+        
+      </div>
+    }
+    </main>
+  </div> -->

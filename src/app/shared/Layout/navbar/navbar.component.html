@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark px-2 flex items-center w-full">
+    <!-- Side Nav Button -->
+    <div class="side-nav-button p-2 me-3 text-light" (click)="sidenavtoggle()">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+  
+    <!-- Navbar Brand -->
+    <a class="navbar-brand nav px-4" href="#">Finance Commission</a>
+  
+    <!-- Profile Logo and Dropdown, aligned to the right -->
+    <div class="ml-auto profile-logo dropstart">
+      <button class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown">
+        Ashutosh
+      </button>
+      <ul class="dropdown-menu dropdown-menu-dark">
+        <li><a href="#" class="dropdown-item">Sign Up</a></li>
+        <li><a href="#" class="dropdown-item">Log Up</a></li>
+        <li><a href="#" class="dropdown-item">Your Profile</a></li>
+        <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+  

@@ -1,0 +1,16 @@
+.bg-dark{
+  background-color: rgb(255, 160, 200) !important;
+}
+
+.nav a{
+  color: black !important;
+}
+
+.navbar-brand{
+  color: black !important;
+
+}
+
+.side-nav-button i{
+  color: black !important;
+}

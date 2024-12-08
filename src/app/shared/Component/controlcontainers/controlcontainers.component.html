@@ -1,0 +1,31 @@
+<div *ngIf="!isLabelOnSameLine" class="block text-left">
+	<label 
+	  [ngClass]="{ '': status && !control?.disabled }" 
+	  class="text-sm text-gray-700 dark:text-gray-300"
+	>
+	  {{ label }}
+	</label>
+  </div>
+  
+  <div 
+	[ngClass]="isLabelOnSameLine ? 'mt-0' : 'mt-2'" 
+	class="mb-3 flex flex-col gap-2"
+  >
+	<ng-content></ng-content>
+  
+	<label
+	  *ngIf="isLabelOnSameLine"
+	  [ngClass]="{ ' ': status && !control?.disabled }"
+	  class="text-sm text-gray-700 dark:text-gray-300 ml-2"
+	>
+	  {{ label }}
+	</label>
+  
+	<ng-container *ngIf="control?.errors">
+	  <app-error
+		[displayError]="control.invalid && control.touched && control.errors?.['required']"
+		[errorMsg]="errorMsg"
+	  ></app-error>
+	</ng-container>
+  </div>
+  
