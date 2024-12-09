@@ -45,7 +45,9 @@ export class LoginComponent extends BaseComponent {
               console.error('Error Logging in:', errorResponse);
               const errorMessage =
                 errorResponse?.error?.text || 'An unexpected error occurred.';
-              this.sweetservice.showError('Login Failed', errorMessage);
+              // this.sweetservice.showError('Login Failed', errorMessage);
+              this.notifyService.error( `Login Failed ..!!`,
+                this.NOTIFICATION_Types.ERROR)
             },
           })
           
