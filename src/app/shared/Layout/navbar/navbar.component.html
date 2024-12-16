@@ -1,13 +1,56 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark px-2 flex items-center w-full">
-    <!-- Side Nav Button -->
+
+<nav class="flex  items-center justify-between bg-[#FFA0C8] px-4 py-2 dark:bg-gray-800 dark:text-white">
+  <!-- Side Nav Button -->
+  <div class="p-2 text-gray-900 dark:text-white cursor-pointer" (click)="sidenavtoggle()">
+    <i class="fa-solid fa-bars"></i>
+  </div>
+
+  <!-- Navbar Brand -->
+  <a class="text-gray-900 dark:text-white text-xl font-semibold" href="#">Finance Commission</a>
+
+  <!-- Profile Logo and Dropdown, aligned to the right -->
+  <div class="ml-auto relative">
+    <!-- Button to trigger the dropdown -->
+    <button 
+      (click)="toggleDropdown13()" 
+      class="btn btn-outline-light text-gray-900 dark:text-white dark:hover:text-gray-200 hover:text-gray-600 dark:bg-gray-700 p-2 rounded-md">
+      Ashutosh
+    </button>
+  
+    <!-- Dropdown menu -->
+     <div *ngIf="dropdownOpen1" >
+    <ul 
+        class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-700 text-black dark:text-white shadow-lg rounded-md">
+      <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Sign Up</a></li>
+      <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Log Up</a></li>
+      <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Your Profile</a></li>
+      <li><a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600" (click)="logout()">Logout</a></li>
+    </ul>
+  </div>
+  </div>
+  
+
+  <!-- Theme Toggle Component -->
+  <div class="ml-4">
+    <app-toggle-theme></app-toggle-theme>
+  </div>
+</nav>
+
+
+
+
+
+
+<!-- 
+  <nav class="navbar navbar-expand navbar-dark bg-dark px-2 flex items-center w-full">
+ 
     <div class="side-nav-button p-2 me-3 text-light" (click)="sidenavtoggle()">
       <i class="fa-solid fa-bars"></i>
     </div>
-  
-    <!-- Navbar Brand -->
+ 
     <a class="navbar-brand nav px-4" href="#">Finance Commission</a>
   
-    <!-- Profile Logo and Dropdown, aligned to the right -->
+
     <div class="ml-auto profile-logo dropstart">
       <button class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown">
         Ashutosh
@@ -19,5 +62,9 @@
         <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
       </ul>
     </div>
+
+    <div class="toggle-theme">
+      <app-toggle-theme></app-toggle-theme>
+    </div>
   </nav>
-  
+   -->

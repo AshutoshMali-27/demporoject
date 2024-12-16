@@ -21,14 +21,40 @@
 
 
 
-<div class="container-fluid g-0">
+
+<div class="container-fluid g-0  w-screen h-screen">
+  <ng-container *ngIf="isLoggedIn; else loggedOut">
+    <app-navbar (sidenavtoggled)="sidenavStatus = $event"></app-navbar>
+    <main class="flex">
+      <app-sidebar [sidenavStatus]="sidenavStatus" [ngClass]="{'app-side-nav-open': sidenavStatus}" class="w-64 bg-gray-200 dark:bg-gray-600 transition-all">
+      </app-sidebar>
+      <div class="display-area flex-1 p-3 w-full h-full dark:bg-gray-900 transition-all" [ngClass]="isLoggedIn ? { 'display-area-shrink': sidenavStatus } : ''">
+        <div [style.padding]="isLoggedIn ? '5px' : '0px'">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </main>
+  </ng-container>
+
+  <ng-template #loggedOut>
+    <div class="w-full h-full bg-gray-100 dark:bg-gray-600">
+      <div [style.padding]="'0px'">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+
+
+<!-- <div class="container-fluid g-0">
     <ng-container *ngIf="isLoggedIn; else loggedOut">
       <app-navbar (sidenavtoggled)="sidenavStatus = $event"></app-navbar>
       <main>
         <app-sidebar [sidenavStatus]="sidenavStatus" [ngClass]="{'app-side-nav-open': sidenavStatus}"></app-sidebar>
         <div class="display-area p-3" [ngClass]="isLoggedIn ? { 'display-area-shrink': sidenavStatus } : ''">
           <div [style.padding]="isLoggedIn ? '5px' : '0px'" >
-            <!-- style="background-color: #fff4fc;" -->
+    
             <router-outlet></router-outlet>
           </div>
         </div>
@@ -36,14 +62,14 @@
     </ng-container>
     
     <ng-template #loggedOut>
-      <!-- Content to show when not logged in -->
+     
       <div class="">
         <div [style.padding]="'0px'">
           <router-outlet></router-outlet>
         </div>
       </div>
     </ng-template>
-  </div>
+  </div> -->
   
   
 
